@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.oneandone.maven.poms</groupId>
+        <artifactId>foss-parent</artifactId>
+        <version>1.5.4</version>
+    </parent>
+    <groupId>net.oneandone.maven</groupId>
+    <artifactId>ui-extra-enforcer-rules</artifactId>
+    <name>1-and-1 :: 1-and-1 :: Enforcer rules</name>
+
+    <description>
+        Additional rules for the Maven Enforcer Plugin
+    </description>
+
+    <url>http://1and1.github.io/ui-extra-enforcer-rules</url>
+
+    <organization>
+        <name>1&amp;1</name>
+        <url>https://1and1.github.com/</url>
+    </organization>
+
+
+    <inceptionYear>2015</inceptionYear>
+
+    <prerequisites>
+        <maven>3.2.3</maven>
+    </prerequisites>
+
+    <scm>
+        <connection>scm:git:git://github.com/1and1/ui-extra-enforcer-rules.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/1and1/ui-extra-enforcer-rules.git</developerConnection>
+        <url>https://github.com/1and1/ui-extra-enforcer-rules/</url>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/1and1/ui-extra-enforcer-rules/issues/</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis</system>
+        <url>TO_BE_DONE</url>
+    </ciManagement>
+</project>
