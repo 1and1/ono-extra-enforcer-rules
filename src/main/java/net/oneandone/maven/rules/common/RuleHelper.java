@@ -14,7 +14,11 @@ public class RuleHelper {
     public static ImmutableListMultimap<String, Dependency> getManagedDependenciesAsMap(MavenProject project) {
         return Multimaps.index(project.getDependencyManagement().getDependencies(), new Function<Dependency, String>() {
             public String apply(Dependency from) {
-                return from.getGroupId() + ":" + from.getArtifactId();
+                if (from != null) {
+                    return from.getGroupId() + ":" + from.getArtifactId();
+                }
+
+                return null;
             }
         });
     }

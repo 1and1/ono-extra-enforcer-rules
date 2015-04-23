@@ -41,4 +41,8 @@ public abstract class AbstractFilterableRule extends AbstractRule {
             }
         }
     }
+
+    public void setExcludes(List<String> excludes) {
+        this.excludes = excludes;
+    }
 }

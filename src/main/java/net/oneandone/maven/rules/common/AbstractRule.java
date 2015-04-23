@@ -52,4 +52,8 @@ public abstract class AbstractRule implements EnforcerRule {
             log.warn("===========================================================");
         }
     }
+
+    public void setShouldBuildFail(boolean shouldBuildFail) {
+        this.shouldBuildFail = shouldBuildFail;
+    }
 }
