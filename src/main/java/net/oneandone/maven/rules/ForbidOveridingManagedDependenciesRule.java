@@ -31,7 +31,7 @@ public class ForbidOveridingManagedDependenciesRule extends AbstractFilterableRu
                 }
             });
 
-            if (shouldBuildFail && failureDetected) {
+            if ( isShouldBuildFail() && failureDetected) {
                 throw new EnforcerRuleException("Failing because of overridden managed dependencies");
             }
         } catch (ExpressionEvaluationException e) {
