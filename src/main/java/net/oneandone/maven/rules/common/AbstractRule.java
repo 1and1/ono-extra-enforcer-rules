@@ -14,9 +14,9 @@ public abstract class AbstractRule implements EnforcerRule {
      * If your rule is cacheable, you must return a unique id when parameters or conditions
      * change that would cause the result to be different. Multiple cached results are stored
      * based on their id.
-     * <p/>
+     * <p>
      * The easiest way to do this is to return a hash computed from the values of your parameters.
-     * <p/>
+     * <p>
      * If your rule is not cacheable, then the result here is not important, you may return anything.
      */
     public String getCacheId() {
