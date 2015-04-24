@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>net.oneandone.maven.poms</groupId>
         <artifactId>foss-parent</artifactId>
         <version>1.5.4</version>
     </parent>
+
     <groupId>net.oneandone.maven</groupId>
     <artifactId>ono-extra-enforcer-rules</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <name>1-and-1 :: Maven Enforcer Rules</name>
 
+    <name>1-and-1 :: Maven Enforcer Rules</name>
     <description>
         Additional rules for the Maven Enforcer Plugin
     </description>
-
     <url>http://1and1.github.io/ono-extra-enforcer-rules</url>
-
+    <inceptionYear>2015</inceptionYear>
     <organization>
         <name>1&amp;1</name>
         <url>https://1and1.github.com/</url>
     </organization>
-
-
-    <inceptionYear>2015</inceptionYear>
 
     <prerequisites>
         <maven>3.2.3</maven>
@@ -40,8 +38,8 @@
         <url>https://github.com/1and1/ono-extra-enforcer-rules/issues/</url>
     </issueManagement>
     <ciManagement>
-        <system>Travis</system>
-        <url>TO_BE_DONE</url>
+        <system>travis-ci</system>
+        <url>https://travis-ci.org/1and1/ono-extra-enforcer-rules</url>
     </ciManagement>
 
     <properties>
@@ -78,7 +76,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.maven.enforcer</groupId>
