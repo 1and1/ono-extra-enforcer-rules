@@ -70,7 +70,7 @@
                 <version>1.0.2.v20150114</version>
             </dependency>
             <dependency>
-                <groupId>-org.codehaus.plexus</groupId>
+                <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-interpolation</artifactId>
                 <version>1.21</version>
             </dependency>
