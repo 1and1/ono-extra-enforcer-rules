@@ -16,7 +16,8 @@ import com.google.common.collect.Maps;
 
 import net.oneandone.maven.rules.common.AbstractFilterableRule;
 
-public class ForbidOveridingManagedPluginsRule extends AbstractFilterableRule {
+public class ForbidOverridingManagedPluginsRule
+    extends AbstractFilterableRule {
 
     public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException {
         Log log = helper.getLog();

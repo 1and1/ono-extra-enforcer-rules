@@ -12,7 +12,8 @@ import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluatio
 import net.oneandone.maven.rules.common.AbstractFilterableRule;
 import net.oneandone.maven.rules.common.DifferenceHandler;
 
-public class ForbidOveridingManagedDependenciesRule extends AbstractFilterableRule {
+public class ForbidOverridingManagedDependenciesRule
+    extends AbstractFilterableRule {
 
     public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException {
         Log log = helper.getLog();
