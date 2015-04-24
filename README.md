@@ -1,4 +1,7 @@
-# ui-extra-enforcer-rules
+# ono-extra-enforcer-rules
+
+Latest Travis-Build: [![Build Status](https://travis-ci.org/1and1/ono-extra-enforcer-rules.svg?branch=master)](https://travis-ci.org/1and1/ono-extra-enforcer-rules)
+
 ## Rules
 ```xml
 <forbidOverideDependencies
@@ -30,10 +33,7 @@ The rules above can define excludes. The check is a simple startsWith on `$group
 ```
 Checks if all submodules of a multimodule are defined in dependency management.
 
-All rules can be configured to let the build fail:
-```xml
-<shouldBuildFail>true</shouldBuildFail>
-```
+All rules can be configured to let the build fail: `<shouldBuildFail>true</shouldBuildFail>`
 
 ## Example
 
@@ -46,7 +46,7 @@ All rules can be configured to let the build fail:
                 <dependency>
                     <groupId>net.oneandone.maven</groupId>
                     <artifactId>ui-extra-enforcer-rules</artifactId>
-                    <version>0.1</version>
+                    <version>${project.version}</version>
                 </dependency>
             </dependencies>
             <configuration>
