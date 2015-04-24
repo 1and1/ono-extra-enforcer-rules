@@ -26,7 +26,7 @@ public class ForbidOveridingManagedPluginsRule extends AbstractFilterableRule {
 
             checkPluginManagementDiffs(project, log);
 
-            if (shouldBuildFail && failureDetected) {
+            if ( shouldBuildFail() && failureDetected) {
                 throw new EnforcerRuleException("Failing because of overridden managed plugins");
             }
         } catch (ExpressionEvaluationException e) {
