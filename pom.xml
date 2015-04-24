@@ -38,7 +38,7 @@
         <url>https://github.com/1and1/ono-extra-enforcer-rules/issues/</url>
     </issueManagement>
     <ciManagement>
-        <system>travis-ci</system>
+        <system>travis</system>
         <url>https://travis-ci.org/1and1/ono-extra-enforcer-rules</url>
     </ciManagement>
 
