@@ -21,7 +21,7 @@ public class ForbidDependencyManagementInSubModulesRule extends AbstractFilterab
 
             checkForSubmoduleDependencyManagement(currentProject, log);
 
-            if ( isShouldBuildFail() && failureDetected) {
+            if ( shouldBuildFail() && failureDetected) {
                 throw new EnforcerRuleException("Failing because of forbidden dependency management in sub modules");
             }
         } catch (ExpressionEvaluationException e) {

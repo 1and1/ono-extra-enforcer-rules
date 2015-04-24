@@ -39,7 +39,7 @@ public class ManageAllModulesRule extends AbstractRule {
                     }
                 }
 
-                if ( isShouldBuildFail() && failureDetected) {
+                if ( shouldBuildFail() && failureDetected) {
                     throw new EnforcerRuleException("Failing because of overridden managed plugins");
                 }
             }
