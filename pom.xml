@@ -7,15 +7,15 @@
         <version>1.5.4</version>
     </parent>
     <groupId>net.oneandone.maven</groupId>
-    <artifactId>ui-extra-enforcer-rules</artifactId>
+    <artifactId>ono-extra-enforcer-rules</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <name>1-and-1 :: 1-and-1 :: Enforcer rules</name>
+    <name>1-and-1 :: Maven Enforcer Rules</name>
 
     <description>
         Additional rules for the Maven Enforcer Plugin
     </description>
 
-    <url>http://1and1.github.io/ui-extra-enforcer-rules</url>
+    <url>http://1and1.github.io/ono-extra-enforcer-rules</url>
 
     <organization>
         <name>1&amp;1</name>
@@ -30,14 +30,14 @@
     </prerequisites>
 
     <scm>
-        <connection>scm:git:git://github.com/1and1/ui-extra-enforcer-rules.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/1and1/ui-extra-enforcer-rules.git</developerConnection>
-        <url>https://github.com/1and1/ui-extra-enforcer-rules/</url>
+        <connection>scm:git:git://github.com/1and1/ono-extra-enforcer-rules.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/1and1/ono-extra-enforcer-rules.git</developerConnection>
+        <url>https://github.com/1and1/ono-extra-enforcer-rules/</url>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/1and1/ui-extra-enforcer-rules/issues/</url>
+        <url>https://github.com/1and1/ono-extra-enforcer-rules/issues/</url>
     </issueManagement>
     <ciManagement>
         <system>Travis</system>
@@ -70,11 +70,6 @@
                 <groupId>org.eclipse.aether</groupId>
                 <artifactId>aether-util</artifactId>
                 <version>1.0.2.v20150114</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-project</artifactId>
-                <version>2.2.1</version>
             </dependency>
             <dependency>
                 <groupId>-org.codehaus.plexus</groupId>
