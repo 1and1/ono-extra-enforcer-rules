@@ -32,7 +32,7 @@ public class ForbidOverridingManagedDependenciesRule
                 }
             });
 
-            if ( shouldBuildFail() && failureDetected) {
+            if (failureDetected) {
                 throw new EnforcerRuleException("Failing because of overridden managed dependencies");
             }
         } catch (ExpressionEvaluationException e) {
