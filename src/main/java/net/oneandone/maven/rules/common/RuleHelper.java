@@ -12,15 +12,19 @@ import com.google.common.collect.Multimaps;
 
 public class RuleHelper {
     public static ImmutableListMultimap<String, Dependency> getManagedDependenciesAsMap(MavenProject project) {
-        return Multimaps.index(project.getDependencyManagement().getDependencies(), new Function<Dependency, String>() {
-            public String apply(Dependency from) {
-                if (from != null) {
-                    return from.getGroupId() + ":" + from.getArtifactId();
-                }
+        if (project.getDependencyManagement() != null) {
+            return Multimaps.index(project.getDependencyManagement().getDependencies(), new Function<Dependency, String>() {
+                public String apply(Dependency from) {
+                    if (from != null) {
+                        return from.getGroupId() + ":" + from.getArtifactId();
+                    }
 
-                return null;
-            }
-        });
+                    return null;
+                }
+            });
+
+        }
+        return ImmutableListMultimap.of();
     }
 
     public static MavenProject getProject(EnforcerRuleHelper helper) throws ExpressionEvaluationException {

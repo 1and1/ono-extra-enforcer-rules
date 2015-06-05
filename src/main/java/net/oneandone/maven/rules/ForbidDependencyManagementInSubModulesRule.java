@@ -30,7 +30,8 @@ public class ForbidDependencyManagementInSubModulesRule extends AbstractFilterab
     }
 
     private void checkForSubmoduleDependencyManagement(final MavenProject project, Log log) {
-        if (project.getDependencyManagement().getDependencies().size() > 0 &&
+        if (project.getDependencyManagement() != null &&
+                project.getDependencyManagement().getDependencies().size() > 0 &&
                 !project.isExecutionRoot() &&
                 !isExcluded(RuleHelper.getProjectIdentifier(project))) {
 

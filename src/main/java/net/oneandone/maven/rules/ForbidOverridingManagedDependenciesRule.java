@@ -17,7 +17,6 @@ public class ForbidOverridingManagedDependenciesRule
 
     public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException {
         Log log = helper.getLog();
-
         try {
             MavenProject project = getProject(helper);
 
@@ -32,7 +31,7 @@ public class ForbidOverridingManagedDependenciesRule
                 }
             });
 
-            if ( shouldBuildFail() && failureDetected) {
+            if (shouldBuildFail() && failureDetected) {
                 throw new EnforcerRuleException("Failing because of overridden managed dependencies");
             }
         } catch (ExpressionEvaluationException e) {

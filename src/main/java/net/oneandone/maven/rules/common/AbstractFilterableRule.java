@@ -24,21 +24,24 @@ public abstract class AbstractFilterableRule extends AbstractRule {
     }
 
     protected void compareDependencyManagementWithParent(MavenProject project, Log log, DifferenceHandler differenceHandler) {
-        ImmutableListMultimap<String, Dependency> projectDependencies = RuleHelper.getManagedDependenciesAsMap(project);
-        ImmutableListMultimap<String, Dependency> parentProjectDependencies = RuleHelper.getManagedDependenciesAsMap(project.getParent());
+        if (project.getParent() != null) {
+            ImmutableListMultimap<String, Dependency> projectDependencies = RuleHelper.getManagedDependenciesAsMap(project);
+            ImmutableListMultimap<String, Dependency> parentProjectDependencies = RuleHelper.getManagedDependenciesAsMap(project.getParent());
 
-        for (Dependency dependency : projectDependencies.values()) {
-            ImmutableList<Dependency> parentDependencies = parentProjectDependencies.get(RuleHelper.getDependencyIdentifier(dependency));
-            if (parentDependencies != null && !isExcluded(dependency.getManagementKey())) {
-                for (Dependency parentDependency : parentDependencies) {
-                    if (dependency.getManagementKey().equals(parentDependency.getManagementKey())) {
-                        if (!dependency.getVersion().equals(parentDependency.getVersion())) {
-                            differenceHandler.handleDifference(log, dependency, parentDependency);
+            for (Dependency dependency : projectDependencies.values()) {
+                ImmutableList<Dependency> parentDependencies = parentProjectDependencies.get(RuleHelper.getDependencyIdentifier(dependency));
+                if (parentDependencies != null && !isExcluded(dependency.getManagementKey())) {
+                    for (Dependency parentDependency : parentDependencies) {
+                        if (dependency.getManagementKey().equals(parentDependency.getManagementKey())) {
+                            if (!dependency.getVersion().equals(parentDependency.getVersion())) {
+                                differenceHandler.handleDifference(log, dependency, parentDependency);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
+
         }
     }
 
