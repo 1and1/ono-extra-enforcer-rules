@@ -2,7 +2,6 @@ package net.oneandone.maven.rules.common;
 
 import java.util.Objects;
 
-import org.apache.maven.enforcer.rule.api.EnforcerLevel;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.enforcer.AbstractNonCacheableEnforcerRule;
 
@@ -19,7 +18,4 @@ public abstract class AbstractRule extends AbstractNonCacheableEnforcerRule {
         }
     }
 
-    public boolean shouldBuildFail() {
-        return getLevel() == EnforcerLevel.ERROR;
-    }
 }
