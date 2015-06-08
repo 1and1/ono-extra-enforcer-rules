@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.oneandone.maven.its</groupId>
+    <artifactId>simple-without-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.oneandone.maven.its</groupId>
+            <artifactId>dependency1</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.oneandone.maven</groupId>
+                        <artifactId>ono-extra-enforcer-rules</artifactId>
+                        <version>@project.version@</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <forbidOverideDependencies
+                                        implementation="net.oneandone.maven.rules.ForbidOverridingManagedDependenciesRule" />
+
+                                <forbidOveridePlugins
+                                        implementation="net.oneandone.maven.rules.ForbidOverridingManagedPluginsRule" />
+                                <forbidManagmentInSubmodules
+                                        implementation="net.oneandone.maven.rules.ForbidDependencyManagementInSubModulesRule" />
+
+                                <manageAll implementation="net.oneandone.maven.rules.ManageAllModulesRule" />
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

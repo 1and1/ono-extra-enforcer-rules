@@ -36,25 +36,27 @@ public class ForbidOverridingManagedPluginsRule
     }
 
     private void checkPluginManagementDiffs(MavenProject project, Log log) {
-        final Map<String, Plugin> projectPlugins = project.getPluginManagement().getPluginsAsMap();
-        final Map<String, Plugin> parentProjectPlugins = project.getParent().getPluginManagement().getPluginsAsMap();
+        if (project.getParent() != null) {
+            final Map<String, Plugin> projectPlugins = project.getPluginManagement().getPluginsAsMap();
+            final Map<String, Plugin> parentProjectPlugins = project.getParent().getPluginManagement().getPluginsAsMap();
 
-        final MapDifference<String, Plugin> difference = Maps.difference(projectPlugins,
-                parentProjectPlugins);
+            final MapDifference<String, Plugin> difference = Maps.difference(projectPlugins,
+                    parentProjectPlugins);
 
-        final Map<String, Plugin> entriesDiffering = difference.entriesInCommon();
+            final Map<String, Plugin> entriesDiffering = difference.entriesInCommon();
 
-        for (Map.Entry<String, Plugin> differenceEntry : entriesDiffering.entrySet()) {
-            final String key = differenceEntry.getKey();
-            final Plugin plugin = projectPlugins.get(key);
-            final Plugin parentPlugin = parentProjectPlugins.get(key);
-            if (!plugin.getVersion().equals(parentPlugin.getVersion()) && !isExcluded(key)) {
-                logHeader(log, "plugin management");
-                log.warn("Difference for: " + key);
-                log.warn("Project: " + plugin.getVersion());
-                log.warn("Parent:  " + parentPlugin.getVersion());
-                log.warn("----------------------------------------");
-                failureDetected = true;
+            for (Map.Entry<String, Plugin> differenceEntry : entriesDiffering.entrySet()) {
+                final String key = differenceEntry.getKey();
+                final Plugin plugin = projectPlugins.get(key);
+                final Plugin parentPlugin = parentProjectPlugins.get(key);
+                if (!plugin.getVersion().equals(parentPlugin.getVersion()) && !isExcluded(key)) {
+                    logHeader(log, "plugin management");
+                    log.warn("Difference for: " + key);
+                    log.warn("Project: " + plugin.getVersion());
+                    log.warn("Parent:  " + parentPlugin.getVersion());
+                    log.warn("----------------------------------------");
+                    failureDetected = true;
+                }
             }
         }
     }

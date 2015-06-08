@@ -17,7 +17,6 @@ public class ForbidOverridingManagedDependenciesRule
 
     public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException {
         Log log = helper.getLog();
-
         try {
             MavenProject project = getProject(helper);
 
