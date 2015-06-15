@@ -35,7 +35,7 @@ public class ForbidDependencyManagementInSubModulesRule extends AbstractFilterab
                 !project.isExecutionRoot() &&
                 !isExcluded(RuleHelper.getProjectIdentifier(project))) {
 
-            compareDependencyManagementWithParent(project, log, new DifferenceHandler() {
+            compareDependenciesWithParentManagement(project, log, new DifferenceHandler() {
                 public void handleDifference(Log log, Dependency dependency, Dependency parentDependency) {
                     logHeader(log, "dependency management in sub modules");
                     log.warn("module '" + project.getArtifact().getDependencyConflictId() + "' has dependency management for: " +

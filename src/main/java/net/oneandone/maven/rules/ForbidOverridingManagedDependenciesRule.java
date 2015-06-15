@@ -20,7 +20,7 @@ public class ForbidOverridingManagedDependenciesRule
         try {
             MavenProject project = getProject(helper);
 
-            compareDependencyManagementWithParent(project, log, new DifferenceHandler() {
+            compareDependenciesWithParentManagement(project, log, new DifferenceHandler() {
                 public void handleDifference(Log log, Dependency dependency, Dependency parentDependency) {
                     logHeader(log, "dependency management");
                     log.warn("Difference for: " + dependency.getManagementKey());

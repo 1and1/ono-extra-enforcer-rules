@@ -23,12 +23,15 @@ public abstract class AbstractFilterableRule extends AbstractRule {
         return false;
     }
 
-    protected void compareDependencyManagementWithParent(MavenProject project, Log log, DifferenceHandler differenceHandler) {
+    protected void compareDependenciesWithParentManagement(MavenProject project, Log log, DifferenceHandler differenceHandler) {
         if (project.getParent() != null) {
-            ImmutableListMultimap<String, Dependency> projectDependencies = RuleHelper.getManagedDependenciesAsMap(project);
+            List<Dependency> projectDependencies = project.getDependencies();
+            if (project.getDependencyManagement() != null) {
+                projectDependencies.addAll(project.getDependencyManagement().getDependencies());
+            }
             ImmutableListMultimap<String, Dependency> parentProjectDependencies = RuleHelper.getManagedDependenciesAsMap(project.getParent());
 
-            for (Dependency dependency : projectDependencies.values()) {
+            for (Dependency dependency : projectDependencies) {
                 ImmutableList<Dependency> parentDependencies = parentProjectDependencies.get(RuleHelper.getDependencyIdentifier(dependency));
                 if (parentDependencies != null && !isExcluded(dependency.getManagementKey())) {
                     for (Dependency parentDependency : parentDependencies) {
