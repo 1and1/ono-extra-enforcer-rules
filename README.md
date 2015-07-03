@@ -4,20 +4,17 @@ Latest Travis-Build: [![Build Status](https://travis-ci.org/1and1/ono-extra-enfo
 
 ## Rules
 ```xml
-<forbidOverridingManagedDependencies
-        implementation="net.oneandone.maven.rules.ForbidOverridingManagedDependenciesRule" />
+<ForbidOverridingManagedDependenciesRule />
 ```
 Forbids overriding dependency management of parent.
 
 ```xml
-<forbidOverridingManagedPlugins
-        implementation="net.oneandone.maven.rules.ForbidOverridingManagedPluginsRule" />
+<ForbidOverridingManagedPluginsRule />
 ```
 Forbids overriding plugin management of parent.
 
 ```xml
-<forbidManagmentInSubmodules
-        implementation="net.oneandone.maven.rules.ForbidDependencyManagementInSubModulesRule" />
+<ForbidDependencyManagementInSubModulesRule />
 ```
 Forbids dependency management in submodules.
 
@@ -29,7 +26,7 @@ Forbids dependency management in submodules.
 The rules above can define excludes. The check is a simple startsWith on `$groupId:$artifactId`
 
 ```xml
-<manageAll implementation="net.oneandone.maven.rules.ManageAllModulesRule" />
+<ManageAllModulesRule />
 ```
 Checks if all submodules of a multimodule are defined in dependency management.
 
@@ -43,31 +40,24 @@ Checks if all submodules of a multimodule are defined in dependency management.
             <dependencies>
                 <dependency>
                     <groupId>net.oneandone.maven</groupId>
-                    <artifactId>ui-extra-enforcer-rules</artifactId>
+                    <artifactId>ono-extra-enforcer-rules</artifactId>
                     <version>${project.version}</version>
                 </dependency>
             </dependencies>
             <configuration>
                 <rules>
-                    <forbidOverridingManagedDependencies
-                            implementation="net.oneandone.maven.rules.ForbidOverridingManagedDependenciesRule">
+                    <ForbidOverridingManagedDependenciesRule>
                             <excludes>
                                 <!-- guava in parent is too old, so allow to override it -->
                                 <exclude>com.google.guava:guava</exclude>
                             </excludes>
-                    </forbidOverridingManagedDependencies>
-                    <forbidOverridingManagedPlugins
-                            implementation="net.oneandone.maven.rules.ForbidOverridingManagedPluginsRule" />
-                    <forbidManagmentInSubmodules
-                            implementation="net.oneandone.maven.rules.ForbidDependencyManagementInSubModulesRule" />
-
-                    <manageAll implementation="net.oneandone.maven.rules.ManageAllModulesRule">
-                        <shouldBuildFail>true</shouldBuildFail>
-                    </manageAll>
+                    </ForbidOverridingManagedDependenciesRule>
+                    <ForbidOverridingManagedPluginsRule />
+                    <ForbidDependencyManagementInSubModulesRule />
+                    <ManageAllModulesRule />
                 </rules>
             </configuration>
         </plugin>
-
     </plugins>
 </build>
 ```

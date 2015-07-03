@@ -9,7 +9,6 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>net.oneandone.maven.its</groupId>
     <artifactId>override-managed-parent-dep</artifactId>
     <version>1.0</version>
 
@@ -52,15 +51,10 @@
                         </goals>
                         <configuration>
                             <rules>
-                                <forbidOverideDependencies
-                                        implementation="net.oneandone.maven.rules.ForbidOverridingManagedDependenciesRule" />
-
-                                <forbidOveridePlugins
-                                        implementation="net.oneandone.maven.rules.ForbidOverridingManagedPluginsRule" />
-                                <forbidManagmentInSubmodules
-                                        implementation="net.oneandone.maven.rules.ForbidDependencyManagementInSubModulesRule" />
-
-                                <manageAll implementation="net.oneandone.maven.rules.ManageAllModulesRule" />
+                                <ForbidOverridingManagedDependenciesRule />
+                                <ForbidOverridingManagedPluginsRule />
+                                <ForbidDependencyManagementInSubModulesRule />
+                                <ManageAllModulesRule />
                             </rules>
                         </configuration>
                     </execution>
