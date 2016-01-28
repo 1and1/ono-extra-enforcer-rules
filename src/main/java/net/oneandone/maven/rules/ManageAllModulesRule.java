@@ -34,7 +34,7 @@ public class ManageAllModulesRule extends AbstractRule {
         try {
             MavenProject project = RuleHelper.getProject(helper);
 
-            if (project.isExecutionRoot()) {
+            if (ruleIsDefinedInProjectOrNotModuleParent(project, helper.getLog())) {
                 detectUnmanagedModules(helper, project);
             }
         } catch (ExpressionEvaluationException e) {
@@ -49,7 +49,7 @@ public class ManageAllModulesRule extends AbstractRule {
         ImmutableListMultimap managedDependencies = RuleHelper.getManagedDependenciesAsMap(project);
 
         for (MavenProject mavenProject : projects) {
-            if (mavenProject.isExecutionRoot()) {
+            if (ruleIsDefinedInProjectOrNotModuleParent(mavenProject, log)) {
                 continue;
             }
             String projectIdentifier = RuleHelper.getProjectIdentifier(mavenProject);
@@ -61,7 +61,7 @@ public class ManageAllModulesRule extends AbstractRule {
         }
 
         if (failureDetected) {
-            throw new EnforcerRuleException("Failing because of overridden managed plugins");
+            throw new EnforcerRuleException("Failing because of unmanaged projects");
         }
     }
 }

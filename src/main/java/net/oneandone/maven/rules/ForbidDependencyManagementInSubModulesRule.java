@@ -46,7 +46,7 @@ public class ForbidDependencyManagementInSubModulesRule extends AbstractFilterab
 
     private void checkForSubmoduleDependencyManagement(final MavenProject project, Log log) {
         if (projectHasManagedDependencies(project) &&
-                !project.isExecutionRoot() &&
+                !ruleIsDefinedInProjectOrNotModuleParent(project, log) &&
                 !isExcluded(RuleHelper.getProjectIdentifier(project))) {
 
             final DependencyManagement dependencyManagement = project.getOriginalModel().getDependencyManagement();
@@ -59,10 +59,6 @@ public class ForbidDependencyManagementInSubModulesRule extends AbstractFilterab
                 }
             }
         }
-    }
-
-    private boolean projectHasManagedDependencies(MavenProject project) {
-        return project.getDependencyManagement() != null && project.getDependencyManagement().getDependencies().size() > 0;
     }
 
 }

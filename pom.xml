@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.oneandone.maven.poms</groupId>
         <artifactId>foss-parent</artifactId>
-        <version>1.5.5</version>
+        <version>1.5.9</version>
     </parent>
 
     <groupId>net.oneandone.maven</groupId>
@@ -48,6 +48,12 @@
     </properties>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/it/mrm</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -62,6 +68,7 @@
                     <addTestClassPath>true</addTestClassPath>
                     <settingsFile>src/it/mrm/settings.xml</settingsFile>
                     <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                    <failIfNoProjects>true</failIfNoProjects>
                 </configuration>
                 <executions>
                     <execution>
@@ -71,7 +78,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <streamLogs>false</streamLogs>
+                            <streamLogs>true</streamLogs>
                             <debug>false</debug>
                         </configuration>
                     </execution>
@@ -93,7 +100,7 @@
                     <propertyName>repository.proxy.url</propertyName>
                     <repositories>
                         <mockRepo>
-                            <source>src/it/mrm/repository</source>
+                            <source>${project.build.testOutputDirectory}/repository</source>
                         </mockRepo>
                         <proxyRepo />
                     </repositories>
