@@ -10,7 +10,7 @@
 
     <groupId>net.oneandone.maven</groupId>
     <artifactId>ono-extra-enforcer-rules</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
 
     <name>1-and-1 :: Maven Enforcer Rules</name>
     <description>
@@ -31,7 +31,7 @@
         <connection>scm:git:git://github.com/1and1/ono-extra-enforcer-rules.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/1and1/ono-extra-enforcer-rules.git</developerConnection>
         <url>https://github.com/1and1/ono-extra-enforcer-rules/</url>
-        <tag>ono-extra-enforcer-rules-0.2</tag>
+        <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
