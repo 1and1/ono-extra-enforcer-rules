@@ -16,11 +16,16 @@
 package net.oneandone.maven.rules.common;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.apache.maven.model.Build;
+import org.apache.maven.model.BuildBase;
+import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.model.PluginExecution;
+import org.apache.maven.model.Profile;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.enforcer.AbstractNonCacheableEnforcerRule;
 import org.apache.maven.project.MavenProject;
@@ -63,9 +68,9 @@ public abstract class AbstractRule extends AbstractNonCacheableEnforcerRule {
             return false;
         }
 
-        log.warn("<<< " + project.toString() + " >>>");
-        log.warn("project Parent: " + project.getParent());
-        log.warn("project orig Model Parent: " + project.getOriginalModel().getParent());
+        log.debug("<<< " + project.toString() + " >>>");
+        log.debug("project Parent: " + project.getParent());
+        log.debug("project orig Model Parent: " + project.getOriginalModel().getParent());
 
         if (ruleDefinedInProject(project)) {
             return true;
@@ -77,14 +82,35 @@ public abstract class AbstractRule extends AbstractNonCacheableEnforcerRule {
     }
 
     private boolean ruleDefinedInProject(MavenProject project) {
-        final Build build = project.getOriginalModel().getBuild();
-        if (build != null) {
-            final Plugin plugin = build.getPluginsAsMap().get("org.apache.maven.plugins:maven-enforcer-plugin");
-            for (PluginExecution execution : plugin.getExecutions()) {
-                final Xpp3Dom configuration = (Xpp3Dom) execution.getConfiguration();
-                final Xpp3Dom rules = configuration.getChild("rules");
-                if (rules != null && rules.getChild(this.getClass().getSimpleName()) != null) {
-                    return true;
+        List<BuildBase> activeBuilds = new ArrayList<>();
+        final Model originalModel = project.getOriginalModel();
+        final Build build = originalModel.getBuild();
+        activeBuilds.add(build);
+
+        final List<Profile> originalProfiles = originalModel.getProfiles();
+        if (originalProfiles != null) {
+            for (Profile profile : project.getActiveProfiles()) {
+                // check active profile is defined in project
+                for (Profile originalProfile : originalProfiles) {
+                    if (originalProfile.equals(profile)) {
+                        activeBuilds.add(originalProfile.getBuild());
+                    }
+                }
+            }
+        }
+
+        for (BuildBase activeBuild : activeBuilds) {
+            if (activeBuild != null) {
+                final Plugin plugin = activeBuild.getPluginsAsMap().get("org.apache.maven.plugins:maven-enforcer-plugin");
+                if (plugin != null) {
+                    for (PluginExecution execution : plugin.getExecutions()) {
+                        final Xpp3Dom configuration = (Xpp3Dom) execution.getConfiguration();
+                        final Xpp3Dom rules = configuration.getChild("rules");
+                        if (rules != null && rules.getChild(this.getClass().getSimpleName()) != null) {
+                            return true;
+                        }
+                    }
+
                 }
             }
         }
@@ -92,6 +118,6 @@ public abstract class AbstractRule extends AbstractNonCacheableEnforcerRule {
     }
 
     protected boolean projectHasManagedDependencies(MavenProject project) {
-        return project.getDependencyManagement() != null && project.getDependencyManagement().getDependencies().size() > 0;
+        return project.getDependencyManagement() != null && !project.getDependencyManagement().getDependencies().isEmpty();
     }
 }
